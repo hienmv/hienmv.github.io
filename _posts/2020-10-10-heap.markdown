@@ -21,7 +21,6 @@ Bài viết gồm 5 phần:
 Heap được cài đặt dựa trên cấu trúc dữ liệu nhị phân hoàn chỉnh (complete binary tree).
 
 
-
 Có hai loại heap được phân loại theo tính chất (property):
 
 - Min-heap: mỗi node cha đều có giá trị nhỏ hơn hoặc bằng node con của nó.
@@ -43,7 +42,6 @@ Có hai loại heap được phân loại theo tính chất (property):
 ### Một số thư viện cài đặt sẵn Heap
 
 - Heap được cài đặt mặc định là binary Heap.
-
 - C++: thư viện queue, và mặc định là max-heap
 - Java: thư viện java.util.PriorityQueue, mặc định là min-heap.
 - Python: thư viện heapq, mặc định là min-heap.
