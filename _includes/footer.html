@@ -1,0 +1,13 @@
+<footer class="site-footer h-card" style="padding-top: 10px;">
+    <data class="u-url" href="{{ "/" | relative_url }}"></data>
+    <div class="wrapper">
+        <div class="footer-col-wrapper" style="float: right; width: 40%; margin: 0; padding-right: 10px;">
+            <div class="footer-col" style="width: 100%; padding: 0;">
+                <p>{{ site.description | escape }}</p>
+            </div>
+        </div>
+        <div class="social-links" style="float: left; width: 30%; padding-left: 10px;">
+            {%- include social.html -%}
+        </div>
+    </div>
+</footer>
