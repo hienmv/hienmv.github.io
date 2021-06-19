@@ -7,13 +7,14 @@ categories: tech
 ---
 
 Bài viết gồm 5 phần:
-
+```
 1. Tổng quan về Heap
 2. Binary Heap
 3. Binomial Heap (“heap nhị thức”). 
 4. Fibonacci heap
 5. Paring Heap (TODO)
 6. Phụ lục
+```
 
 # Tổng quan về Heap 
 
@@ -25,7 +26,7 @@ Có hai loại heap được phân loại theo tính chất (property):
 
 - Min-heap: mỗi node cha đều có giá trị nhỏ hơn hoặc bằng node con của nó.
 - Max-heap: mỗi node cha đều có giá trị lớin hơn hoặc bằng node con của nó. 
-
+![](/assets/MinHeapAndMaxHeap.png)
 ### Độ phức tạp các thao tác trên heap.
 
 - Xây dựng cây heap từ mảng O(n)
@@ -48,7 +49,7 @@ Có hai loại heap được phân loại theo tính chất (property):
 - Python: thư viện heapq, mặc định là min-heap.
 
 ### Độ phức tạp thuật toán theo thời gian của một số các cách cài đặt Heap.
-
+![](../assets/HeapTimeComplexity.png)
 # Binary Heap:
 
 Là heap được xây dựng dựa trên cây nhị phân hoàn chỉnh. 
@@ -63,7 +64,7 @@ Là heap được xây dựng dựa trên cây nhị phân hoàn chỉnh.
    - right = i*2 + 2.
 
 2. Minh hoạ: tạo heap từ 1 mảng [9, 12, 8, 10, 16, 14, 1, 7]
-
+![](../assets/BinaryHeapExample.jpg)
    1. source code:
 
       ```
@@ -110,7 +111,7 @@ int top()
 1. Thêm phần tử vào cuối của heap, sau đó cân bằng lại heap.
 
 2. Minh hoạ với heap ở trên, thêm 5
-
+![](../assets/BinaryHeapExample2.jpg)
 3. source code. 
 
    ```
@@ -130,7 +131,7 @@ int top()
 1. Ý tưởng: gán giá trị phần tử cuối cùng của heap cho phần tử đầu của heap, sau đó xoá phần tử cuối cùng đi, và cân bằng lại heap tại vị trí 0
 
 2. Minh hoạ với heap trên.
-
+![](../assets/BinaryHeapExample3.jpg)
 3. source code.
 
    ```
@@ -153,7 +154,7 @@ int top()
 1. Binomial heap là một cách cài đặt của heap. 
 2. Binomial heap là một tập hợp các binomial tree mà được liên kết với nhau. 
 3. Ở mỗi binomial heap, sẽ có 0 hoặc 1 binomial tree tại order là k, (tại order k, có nhiều nhất 2^k node)
-
+![](../assets/BinominalHeap.png)
 ## Binomial Tree
 
 1. Binomial heap được tạo bởi các binomial trees
@@ -188,11 +189,10 @@ Binomial heaps có thể được cài đặt bằng việc sử dụng double l
       2. Trong binomial heap, với mỗi order k, sẽ chỉ có nhiều nhất một binomal tree. Tính chất này sẽ đảm bảo: với 1 binomial heap, sẽ có nhiều nhất log2(n) + 1binomial trees. 
 
 2. Minh hoạ:
+![](../assets/BinominalHeapExample.png)
 
-   1. Dưới đây là hình minh hoạ về sự liên kết của các node ở binomial heap trên: 
-
-      
-
+   Dưới đây là hình minh hoạ về sự liên kết của các node ở binomial heap trên: 
+![](../assets/BinominalHeapExample2.png)
 ### Một số binomial heap functionalities cơ bản. 
 
 1. find-min: tìm min-value trong heap O(logn)
@@ -204,7 +204,7 @@ Binomial heaps có thể được cài đặt bằng việc sử dụng double l
    1. So sánh key của 2 root binomial tree, node có key nhỏ hơn sẽ trở thành root node của binomial tree mới. 
 
    2. Minh hoạ
-
+![](../assets/BinominalHeapExample3.png)
    3. Merge binomial tree pseudo code:
 
       ```
@@ -216,10 +216,8 @@ Binomial heaps có thể được cài đặt bằng việc sử dụng double l
       ```
 
    4. Merge binomial heap 
-
-      1. 
-
-      2. pseudo code:
+      ![](../assets/BinomialHeapExample4.png)
+      1. pseudo code:
 
          ```
          function merge(p, q) //p and q are heaps
@@ -233,7 +231,7 @@ Binomial heaps có thể được cài đặt bằng việc sử dụng double l
                  heap.next(); p.next(); q.next()
          ```
 
-3. extract-min : xoá node chứa min-value O(logn)
+1. extract-min : xoá node chứa min-value O(logn)
 
    1. Sử dụng find-minđể tìm ra root node root_node trong danh sách root và xoá node này đi. 
 
@@ -254,22 +252,22 @@ Binomial heaps có thể được cài đặt bằng việc sử dụng double l
           merge(heap, tmp)
       ```
 
-4. insert thêm một phần tử vào heap H: amortized O(1)
+2. insert thêm một phần tử vào heap H: amortized O(1)
 
    1. Tạo ra 1 heap mới H'với phần tử muốn thêm vào heap ban đầu.
    2. Merge H và H'
 
-5. decrease value lấy phần tử xx trong binomial heap và gán value = v. O(logn)
+3. decrease value lấy phần tử xx trong binomial heap và gán value = v. O(logn)
 
    1. Gán value của xx = v.
    2. Nếu xx nằm trong binomial tree Bk, thì kiểm tra xx và node cha của nó, và hoán vị nếu cần thiết để đảm bảo tính chất min-heap/ max-heap. 
 
-6. remove xoá phần tử xx ra khỏi heap. O(logn)
+4. remove xoá phần tử xx ra khỏi heap. O(logn)
 
    1. Gán value của xx là 1 số âm, sử dụng decrease value
    2. Sử dụng extract-min
 
-7. [sample code](https://www.nayuki.io/res/binomial-heap/binomialheap.py)
+5. [sample code](https://www.nayuki.io/res/binomial-heap/binomialheap.py)
 
 ### [Binomial heap visualization](https://www.cs.usfca.edu/~galles/visualization/BinomialQueue.html)
 
@@ -283,7 +281,7 @@ Binomial heaps có thể được cài đặt bằng việc sử dụng double l
 
 1. Fibonacci heap là một cách cài đặt của heap. 
 2. Fibonacci heap tương tự như binomial heap, nhưng sử dụng cơ chế lazy - chỉ merge trees khi functionextract-minđược gọi. 
-
+![](../assets/FibonacciHeap.png)
 ## Thuộc tính
 
 Để cho phép thực hiện nhanh các thao tác xoá, gộp các node, các root node của các tree được liên kết với nhau bằng cách sử dụng circular doubly linked list. 
@@ -294,11 +292,11 @@ Mỗi node có một con trỏ trỏ tới node cha của nó. Các node con s�
 
 Với mỗi node, linked list cũng lưu trữ số lượng node con, 1 con trỏ trỏ tới node root mà chứa min-value(hay min-key), và 1 mark flag để xác định xem node này đã được đánh dấu hay chưa (Một node được đánh dấu có nghĩa là node đó bị mất 1 node con, và không bị đánh dấu nếu node đó không mất node con nào).
 
-
+![](../assets/FibonacciHeapExample.png)
 
 Bậc (order) của các node (trong trường hợp này, bậc của một node là số lượng node con kết nối trực tiếp tới node đó, **khác với khái niệm bậc ở binomial tree của binomial heap**) sẽ bị giới hạn. Bậc của một node lớn nhất là O(logn) và với một tree mà root node có bậc là k thì size của nó có giá trị nhỏ nhất là F(k+2), với F(k) là kth Fibonacci number
 
-
+![](../assets/FibonacciHeapExample2.png)
 
 Cấu trúc này được đảm bảo bởi nguyên tắc: Tại 1 tree, và với 1 node không khải là root node, thì có nhiều nhất 1 node con của nó được loại bỏ (thao tác xoá một node). Khi node con thứ hai của nó bị loại bỏ, nó cũng phải được loại bỏ khỏi node cha của nó, và trở thành 1 node root của 1 tree mới trong fibonacci heap. Khi đó, số lượng tree trong fibonacci heap tăng lên một, và số lượng tree chỉ có thể giảm khi thực hiện thao tác extract-min.
 
@@ -309,38 +307,48 @@ Fibonacci heap cũng phải thoả mãn tính chất min-heap (hoặc max-heap t
 Dưới đây là một trong những cách cài đặt các function chính của fibonacci heap.
 
 1. find-min O(1)
-   1. Vì đã có 1 con trỏ heap-min-pointer trỏ tới root node chứa min-key, nên thao tác này có thể thực hiện với độ phức tạp thuật toán về mặt thời gian là O(1)
+   Vì đã có 1 con trỏ heap-min-pointer trỏ tới root node chứa min-key, nên thao tác này có thể thực hiện với độ phức tạp thuật toán về mặt thời gian là O(1)
 2. Insert O(1)
-   1. Thêm mới 1 node vào fibonacci heap bằng cách tạo ra 1 tree mà root node chính là node muốn thêm vào, và thêm vào double linked list của các root node của các tree. 
+   Thêm mới 1 node vào fibonacci heap bằng cách tạo ra 1 tree mà root node chính là node muốn thêm vào, và thêm vào double linked list của các root node của các tree.
+   ![](../assets/FibonacciHeapExample3.png) 
 3. Merge O(1) Merge 2 fibonacci heap 
    1. Thao tác này chỉ đơn giản là gộp danh sách tree root node của 2 heap. 
    2. Minh hoạ: Merge H' và H''
-   3. 
+   ![](../assets/FibonacciHeapExample4.png)
+   ![](../assets/FibonacciHeapExample5.png)
 4. extract-min O(logn): xoá root node chứa minimum-key
+   ![](../assets/FibonacciHeapExample6.png)
    1. Gồm 3 bước:
       1. Bước 1: xoá node chứa minimum-key và thêm các node của nó vào danh sách root.
       2. Bước 2: cập nhật lại con trỏ heap-min-pointer
+      ![](../assets/FibonacciHeapExample7.png)
       3. Bước 3: Gộp các tree mà có cùng bậc. Bước này sẽ lặp đi lặp lại cho đến khi không có 2 tree nào cùng bậc trong fibonacci heap.
+      ![](../assets/FibonacciHeapExample8.png)
 5. decrease-key O(1), có hai trường hợp
    1. không làm vi phạm tính chất min-heap:
       1. giảm key của node x xuống k
       2. thay đổi heap-min-pointer nếu cần thiết
+      ![](../assets/F9.png)
    2. vi phạm tính chất min-heap
       1. Trường hợp node cha chưa được đánh dấu (unmarked):
+         ![](../assets/F10.png)
          1. giảm key của node x xuống k.
          2. cắt liên kết giữa node x và node cha của nó.
          3. đánh dấu node cha.
          4. thêm tree mà có root là node x vào danh sách root node của heap, và thay đổi heap-min-pointernếu cần thiết
+         ![](../assets/F11.png)
       2. Trường hợp node cha đã được đánh dấu (marked):
+         ![](../assets/F12.png)
          1. giảm key của node x xuống k.
          2. cắt liên kết giữa node x và node cha p[x] của nó.
          3. cắt liên kết giữa node p[x] và node cha p[p[x]] của nó.
             1. nếu node p[p[x]] chưa được đánh dấu, đánh dấu nó.
             2. nếu node p[p[x]] đã được đánh dấu, lặp lại như bước 3 với node p[p[x]].
-               1. 
-               2. 
-               3. 
+               1. ![](../assets/F13.png)
+               2. ![](../assets/F14.png)
+               3. ![](../assets/F15.png)
          4. Cập nhật lại heap-min-pointer nếu cần thiết.
+            ![](../assets/F16.png)
 6. Remove O(logn) xoá phần tử xx ra khỏi heap:
    1. Gán key của xx là 1 số âm, sử dụng decrease key
    2. Sử dụng extract-min
@@ -358,18 +366,17 @@ Dưới đây là một trong những cách cài đặt các function chính c�
 1. Phân biệt các loại cây nhị phân:
    1. Full binary tree: là cây nhị phân mà mỗi node có 0 hoặc 2 node con. Và hai loại node này (có 0 hoặc 2 node con) đều có thể ở bất kỳ level nào trong tree. 
    2. Complete binary tree: là cây nhị phân mà mỗi level sẽ được lấp đầy, và ở level cuối cùng - sẽ lấp đầy theo hướng: các node bên trái trước, bên phải sau. Mỗi node sẽ có 2 node con, trừ các node ở hai level dưới cùng. Các node ở level cuối cùng sẽ không có node con. Các node ở level thứ hai từ dưới lên - sẽ có 0, 1, hoặc 2 con.
-   3. Link tham khảo đầy đủ: https://www.quora.com/What-is-the-difference-between-complete-and-full-binary-trees
-2. Heap visualization: https://www.cs.usfca.edu/~galles/visualization/Heap.html
-3. Binary heap: http://users.cecs.anu.edu.au/~Alistair.Rendell/Teaching/apac_comp3600/module2/binary_heaps.xhtml
+   3. [Link tham khảo đầy đủ](https://www.quora.com/What-is-the-difference-between-complete-and-full-binary-trees)
+2. [Heap visualization](https://www.cs.usfca.edu/~galles/visualization/Heap.html)
+3. [Binary heap](http://users.cecs.anu.edu.au/~Alistair.Rendell/Teaching/apac_comp3600/module2/binary_heaps.xhtml)
 4. Binomial heap: 
-   1. https://brilliant.org/wiki/binomial-heap/
-   2. https://www.youtube.com/watch?v=7UQd9SYUoNk
-   3. https://en.wikipedia.org/wiki/Binomial_heap#Applications
-   4. visualization: https://www.cs.usfca.edu/~galles/visualization/BinomialQueue.html
+   1. [binomial heap brilliant](https://brilliant.org/wiki/binomial-heap/)
+   2. [youtube](https://www.youtube.com/watch?v=7UQd9SYUoNk)
+   3. [Binomial heap application](https://en.wikipedia.org/wiki/Binomial_heap#Applications)
+   4. [Binomial Queue visualization](https://www.cs.usfca.edu/~galles/visualization/BinomialQueue.html)
 5. Fibonacci Heap:
-   1. https://en.wikipedia.org/wiki/Fibonacci_heap
-   2. [https://brilliant.org/wiki/fibonacci-heap/](https://brilliant.org/wiki/fibonacci-heap/#citation-3)
-   3. https://www.cs.princeton.edu/~wayne/cs423/lectures/fibonacci-4up.pdf
-   4. https://stackoverflow.com/questions/14333314/why-is-a-fibonacci-heap-called-a-fibonacci-heap
-6. Paring Heap:
-   1. https://brilliant.org/wiki/pairing-heap/
+   1. [Wikipedia](https://en.wikipedia.org/wiki/Fibonacci_heap)
+   2. [fibonacci-heap, brilliant](https://brilliant.org/wiki/fibonacci-heap/#citation-3)
+   3. [fibonacci heap princetion.edu](https://www.cs.princeton.edu/~wayne/cs423/lectures/fibonacci-4up.pdf)
+   4. [why a fibonacci heap called a fibonacci heap](https://stackoverflow.com/questions/14333314/why-is-a-fibonacci-heap-called-a-fibonacci-heap)
+6. [Paring Heap](https://brilliant.org/wiki/pairing-heap/)
