@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Heap"
-date:   2020-10-10 22:47:52 +0900
+title: "Heap"
+date: 2020-10-10 22:47:52 +0900
 categories: tech
 
 ---
@@ -16,7 +16,7 @@ Bài viết gồm 5 phần:
 6. Phụ lục
 ```
 
-# Tổng quan về Heap 
+## 1/ Tổng quan về Heap
 
 Heap được cài đặt dựa trên cấu trúc dữ liệu nhị phân hoàn chỉnh (complete binary tree).
 
@@ -24,14 +24,15 @@ Heap được cài đặt dựa trên cấu trúc dữ liệu nhị phân hoàn 
 Có hai loại heap được phân loại theo tính chất (property):
 
 - Min-heap: mỗi node cha đều có giá trị nhỏ hơn hoặc bằng node con của nó.
-- Max-heap: mỗi node cha đều có giá trị lớin hơn hoặc bằng node con của nó. 
+- Max-heap: mỗi node cha đều có giá trị lớn hơn hoặc bằng node con của nó. 
 ![](/assets/MinHeapAndMaxHeap.png)
+
 ### Độ phức tạp các thao tác trên heap.
 
-- Xây dựng cây heap từ mảng O(n)
-- Tìm phần tử lớn nhất/nhỏ nhất O(1)
-- Thêm một phần tử vào heap O(log(n))
-- Xoá một phần tử trong heap (extract-min, extract-max) O(log(n))
+- Xây dựng cây heap từ mảng `O(n)`
+- Tìm phần tử lớn nhất/nhỏ nhất `O(1)`
+- Thêm một phần tử vào heap `O(log(n))`
+- Xoá một phần tử trong heap (extract-min, extract-max) `O(log(n))`
 
 ### Ứng dụng
 
@@ -42,19 +43,21 @@ Có hai loại heap được phân loại theo tính chất (property):
 ### Một số thư viện cài đặt sẵn Heap
 
 - Heap được cài đặt mặc định là binary Heap.
-- C++: thư viện queue, và mặc định là max-heap
-- Java: thư viện java.util.PriorityQueue, mặc định là min-heap.
-- Python: thư viện heapq, mặc định là min-heap.
+- C++: thư viện `queue`, và mặc định là max-heap
+- Java: thư viện `java.util.PriorityQueue`, mặc định là min-heap.
+- Python: thư viện `heapq`, mặc định là min-heap.
 
 ### Độ phức tạp thuật toán theo thời gian của một số các cách cài đặt Heap.
 ![](../assets/HeapTimeComplexity.png)
-# Binary Heap:
+
+
+## 2/ Binary Heap
 
 Là heap được xây dựng dựa trên cây nhị phân hoàn chỉnh. 
 
-## Các thao tác - minh hoạ min-heap
+### Các thao tác - minh hoạ min-heap
 
-### Xây dựng binary Heap từ mảng O(n)
+#### Xây dựng binary Heap từ mảng O(n)
 
 1. Lưu heap trên mảng: từ node có vị trị i, thì cách tính tới vị trí node con sẽ là:
 
@@ -63,7 +66,8 @@ Là heap được xây dựng dựa trên cây nhị phân hoàn chỉnh.
 
 2. Minh hoạ: tạo heap từ 1 mảng [9, 12, 8, 10, 16, 14, 1, 7]
 ![](../assets/BinaryHeapExample.jpg)
-   1. source code:
+
+source code:
 
       ```
       vector<int> h; // h = [9, 12, 8, 10, 16, 14, 1, 7], n = 8
@@ -93,7 +97,7 @@ Là heap được xây dựng dựa trên cây nhị phân hoàn chỉnh.
       }
       ```
 
-### Tìm phần tử nhỏ nhất O(1)
+#### Tìm phần tử nhỏ nhất O(1)
 
 Trả về phần tử đầu tiên của heap.
 
@@ -104,7 +108,7 @@ int top()
 }
 ```
 
-### Thêm một node vào heap O(logn)
+#### Thêm một node vào heap O(logn)
 
 1. Thêm phần tử vào cuối của heap, sau đó cân bằng lại heap.
 
@@ -124,7 +128,7 @@ int top()
    }
    ```
 
-### Xoá một node root trong heap O(logn)
+#### Xoá một node root trong heap O(logn)
 
 1. Ý tưởng: gán giá trị phần tử cuối cùng của heap cho phần tử đầu của heap, sau đó xoá phần tử cuối cùng đi, và cân bằng lại heap tại vị trí 0
 
@@ -145,27 +149,30 @@ int top()
    }
    ```
 
-# Binomial Heap
 
-## Định nghĩa
+## 3/ Binomial Heap
+
+### Định nghĩa
 
 1. Binomial heap là một cách cài đặt của heap. 
 2. Binomial heap là một tập hợp các binomial tree mà được liên kết với nhau. 
-3. Ở mỗi binomial heap, sẽ có 0 hoặc 1 binomial tree tại order là k, (tại order k, có nhiều nhất 2^k node)
+3. Ở mỗi binomial heap, sẽ có 0 hoặc 1 binomial tree tại order là k, (tại order k, có nhiều nhất 2^k node).
+
 ![](../assets/BinominalHeap.png)
-## Binomial Tree
+
+### Binomial Tree
 
 1. Binomial heap được tạo bởi các binomial trees
 2. Một binomial tree có order là k, sẽ được tạo bởi 2 binomial tree có bậc là k - 1, và trong đó, hai binomial tree này sẽ được liên kết với nhau: root node của 1 binomial tree sẽ là leftmost child node của root node của binomial còn lại. 
 3. Binomial tree được định nghĩa như sau:
    1. Một binomial tree tại order 0 sẽ là 1 single node.
-   2. Một binomial tree tại order k sẽ có 1 root node mà các node con của nó là các root node của các binomial trees tại order k-1, k-2,…2, 1, 0.
+   2. Một binomial tree tại order k sẽ có 1 root node mà các node con của nó là các root node của các binomial trees tại order k-1, k-2,..,2, 1, 0.
 4. Thuộc tính : Một binomial tree ở bậc k Bksẽ có:
    1. Chiều cao của tree là k. 
    2. Tổng số lượng nodes là 2^k
    3. Xoá root node sẽ sinh ra k binomial trees: Bk-1 Bk-2..B0
 
-## Binomial Heap
+### Binomial Heap
 
 Binomial heaps có thể được cài đặt bằng việc sử dụng double linked list để tận dụng việc thêm mới, xoá từ danh sách root, cũng như thao tác merge 2 root list với constant time. Mỗi node chứa các thông tin:
 
@@ -174,15 +181,13 @@ Binomial heaps có thể được cài đặt bằng việc sử dụng double l
 - Con trỏ trỏ tới node con ngoài cùng bên trái.
 - Số lượng node con và các key của nó.
 
-### Thuộc tính cơ bản của binomial heap: 
+#### Thuộc tính cơ bản của binomial heap: 
 
 1. Với 1 binomial heap có n nodes:
-
    1. Node mà chứa min-value/ max-value là root node của B0 hoặc B1 hoặc… Bk.
    2. Có nhiều nhất log2(n) + 1 binomial trees.
    3. Độ cao của heap lớn nhất là log2(n)
-
-   1. Binamial heap phải thoả mãn các tính chất sau: (Binomial Heap Property)
+   4. Binamial heap phải thoả mãn các tính chất sau: (Binomial Heap Property)
       1. Tất cả các binomial tree trong binomail min heap phải thoả mãn tính chất min-heap và tương tự với max-heap.
       2. Trong binomial heap, với mỗi order k, sẽ chỉ có nhiều nhất một binomal tree. Tính chất này sẽ đảm bảo: với 1 binomial heap, sẽ có nhiều nhất log2(n) + 1binomial trees. 
 
@@ -191,19 +196,17 @@ Binomial heaps có thể được cài đặt bằng việc sử dụng double l
 
    Dưới đây là hình minh hoạ về sự liên kết của các node ở binomial heap trên: 
 ![](../assets/BinominalHeapExample2.png)
-### Một số binomial heap functionalities cơ bản. 
 
-1. find-min: tìm min-value trong heap O(logn)
+#### Một số function cơ bản. 
 
-   1. Có nhiều nhất log2(n) + 1 binamial trees trong heap, và duyệt qua từng root node của mỗi tree đó để tìm min-value. 
+1. `find-min`: tìm min-value trong heap O(logn)
+Có nhiều nhất log2(n) + 1 binamial trees trong heap, và duyệt qua từng root node của mỗi tree đó để tìm min-value. 
 
-2. merge: merge 2 binomial heaps thành 1 binomial heap mới: O(logn)
-
+2. `merge`: merge 2 binomial heaps thành 1 binomial heap mới: O(logn)
    1. So sánh key của 2 root binomial tree, node có key nhỏ hơn sẽ trở thành root node của binomial tree mới. 
-
-   2. Minh hoạ
 ![](../assets/BinominalHeapExample3.png)
-   3. Merge binomial tree pseudo code:
+
+   2. Merge binomial tree pseudo code:
 
       ```
       function mergeTree(p, q)
@@ -213,10 +216,10 @@ Binomial heaps có thể được cài đặt bằng việc sử dụng double l
               return q.addSubTree(p)
       ```
 
-   4. Merge binomial heap 
+   3. Merge binomial heap 
       ![](../assets/BinomialHeapExample4.png)
-      1. pseudo code:
-
+      
+      pseudo code:
          ```
          function merge(p, q) //p and q are heaps
              while not (p.end() and q.end())
@@ -229,9 +232,9 @@ Binomial heaps có thể được cài đặt bằng việc sử dụng double l
                  heap.next(); p.next(); q.next()
          ```
 
-1. extract-min : xoá node chứa min-value O(logn)
+3. `extract-min` : xoá node chứa min-value O(logn)
 
-   1. Sử dụng find-minđể tìm ra root node root_node trong danh sách root và xoá node này đi. 
+   1. Sử dụng `find-min` để tìm ra root node root_node trong danh sách root và xoá node này đi. 
 
       1. Tìm root_node
       2. Xoá root_node
@@ -250,37 +253,40 @@ Binomial heaps có thể được cài đặt bằng việc sử dụng double l
           merge(heap, tmp)
       ```
 
-2. insert thêm một phần tử vào heap H: amortized O(1)
+4. `insert` thêm một phần tử vào heap H: amortized O(1)
 
    1. Tạo ra 1 heap mới H'với phần tử muốn thêm vào heap ban đầu.
    2. Merge H và H'
 
-3. decrease value lấy phần tử xx trong binomial heap và gán value = v. O(logn)
+5. `decrease value` lấy phần tử xx trong binomial heap và gán value = v. O(logn)
 
    1. Gán value của xx = v.
-   2. Nếu xx nằm trong binomial tree Bk, thì kiểm tra xx và node cha của nó, và hoán vị nếu cần thiết để đảm bảo tính chất min-heap/ max-heap. 
+   2. Nếu xx nằm trong binomial tree Bk, thì kiểm tra xx và node cha của nó, và hoán vị nếu cần thiết để đảm bảo tính chất min-heap/max-heap.
 
-4. remove xoá phần tử xx ra khỏi heap. O(logn)
+6. `remove` xoá phần tử xx ra khỏi heap. O(logn)
 
    1. Gán value của xx là 1 số âm, sử dụng decrease value
-   2. Sử dụng extract-min
+   2. Sử dụng `extract-min`
 
-5. [sample code](https://www.nayuki.io/res/binomial-heap/binomialheap.py)
+[sample code](https://www.nayuki.io/res/binomial-heap/binomialheap.py)
 
-### [Binomial heap visualization](https://www.cs.usfca.edu/~galles/visualization/BinomialQueue.html)
 
-### Ứng dụng của Binomial Heap
+#### [Binomial heap visualization](https://www.cs.usfca.edu/~galles/visualization/BinomialQueue.html)
+
+#### Ứng dụng của Binomial Heap
 
 - Ngoài các ứng dụng giống như binary heap: cài đặt priority queue, các thuật toán tìm đường, binomial heap còn được sử dụng để cài đặt [Discrete-event simulation](https://en.wikipedia.org/wiki/Discrete-event_simulation).
 
-# Fibonacci Heap
 
-## Định nghĩa
+## 4/ Fibonacci Heap
+
+### Định nghĩa
 
 1. Fibonacci heap là một cách cài đặt của heap. 
-2. Fibonacci heap tương tự như binomial heap, nhưng sử dụng cơ chế lazy - chỉ merge trees khi functionextract-minđược gọi. 
+2. Fibonacci heap tương tự như binomial heap, nhưng sử dụng cơ chế lazy - chỉ merge trees khi function `extract-min` được gọi. 
 ![](../assets/FibonacciHeap.png)
-## Thuộc tính
+
+### Thuộc tính
 
 Để cho phép thực hiện nhanh các thao tác xoá, gộp các node, các root node của các tree được liên kết với nhau bằng cách sử dụng circular doubly linked list. 
 
@@ -300,29 +306,29 @@ Cấu trúc này được đảm bảo bởi nguyên tắc: Tại 1 tree, và v�
 
 Fibonacci heap cũng phải thoả mãn tính chất min-heap (hoặc max-heap trong trường hợp muốn tạo max-heap), tức là: tất cả các node con phải có giá trị có giá trị lớn hơn node cha, và node có giá trị nhỏ nhất luôn là root node của một tree. 
 
-## Một số function chính
+### Một số function chính
 
 Dưới đây là một trong những cách cài đặt các function chính của fibonacci heap.
 
-1. find-min O(1)
-   Vì đã có 1 con trỏ heap-min-pointer trỏ tới root node chứa min-key, nên thao tác này có thể thực hiện với độ phức tạp thuật toán về mặt thời gian là O(1)
-2. Insert O(1)
-   Thêm mới 1 node vào fibonacci heap bằng cách tạo ra 1 tree mà root node chính là node muốn thêm vào, và thêm vào double linked list của các root node của các tree.
+1. `find-min` O(1):
+   - Vì đã có 1 con trỏ heap-min-pointer trỏ tới root node chứa min-key, nên thao tác này có thể thực hiện với độ phức tạp thuật toán về mặt thời gian là O(1)
+2. `Insert` O(1): 
+   - Thêm mới 1 node vào fibonacci heap bằng cách tạo ra 1 tree mà root node chính là node muốn thêm vào, và thêm vào double linked list của các root node của các tree.
    ![](../assets/FibonacciHeapExample3.png) 
-3. Merge O(1) Merge 2 fibonacci heap 
+3. `Merge` O(1): Merge 2 fibonacci heap 
    1. Thao tác này chỉ đơn giản là gộp danh sách tree root node của 2 heap. 
    2. Minh hoạ: Merge H' và H''
    ![](../assets/FibonacciHeapExample4.png)
    ![](../assets/FibonacciHeapExample5.png)
-4. extract-min O(logn): xoá root node chứa minimum-key
+4. `extract-min` O(logn): xoá root node chứa minimum-key
    ![](../assets/FibonacciHeapExample6.png)
    1. Gồm 3 bước:
       1. Bước 1: xoá node chứa minimum-key và thêm các node của nó vào danh sách root.
       2. Bước 2: cập nhật lại con trỏ heap-min-pointer
       ![](../assets/FibonacciHeapExample7.png)
-      3. Bước 3: Gộp các tree mà có cùng bậc. Bước này sẽ lặp đi lặp lại cho đến khi không có 2 tree nào cùng bậc trong fibonacci heap.
+      1. Bước 3: Gộp các tree mà có cùng bậc. Bước này sẽ lặp đi lặp lại cho đến khi không có 2 tree nào cùng bậc trong fibonacci heap.
       ![](../assets/FibonacciHeapExample8.png)
-5. decrease-key O(1), có hai trường hợp
+5. `decrease-key` O(1), có hai trường hợp
    1. không làm vi phạm tính chất min-heap:
       1. giảm key của node x xuống k
       2. thay đổi heap-min-pointer nếu cần thiết
@@ -347,19 +353,19 @@ Dưới đây là một trong những cách cài đặt các function chính c�
                3. ![](../assets/F15.png)
          4. Cập nhật lại heap-min-pointer nếu cần thiết.
             ![](../assets/F16.png)
-6. Remove O(logn) xoá phần tử xx ra khỏi heap:
+6. `Remove` O(logn) xoá phần tử xx ra khỏi heap:
    1. Gán key của xx là 1 số âm, sử dụng decrease key
    2. Sử dụng extract-min
 
 [Sample source code](https://github.com/w01fe/fibonacci-heap/blob/master/src/jvm/w01fe/fibonacci_heap/FibonacciHeap.java)
 
-## Ứng dụng 
+### Ứng dụng
 
 - Cũng giống như binary heap, binomial heap, Fibonacci heap được sử dụng để cài đặt priority queue ở thuật toán tìm đường như Dijkstra, Prim nhằm tăng performance. 
 
-# Paring heap. (TODO)
+## 5/ Paring heap (TODO)
 
-# Phụ lục: 
+## 6/ Phụ lục
 
 1. Phân biệt các loại cây nhị phân:
    1. Full binary tree: là cây nhị phân mà mỗi node có 0 hoặc 2 node con. Và hai loại node này (có 0 hoặc 2 node con) đều có thể ở bất kỳ level nào trong tree. 
