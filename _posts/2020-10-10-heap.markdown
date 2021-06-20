@@ -25,7 +25,7 @@ Có hai loại heap được phân loại theo tính chất (property):
 
 - Min-heap: mỗi node cha đều có giá trị nhỏ hơn hoặc bằng node con của nó.
 - Max-heap: mỗi node cha đều có giá trị lớn hơn hoặc bằng node con của nó. 
-![](/assets/MinHeapAndMaxHeap.png)
+![](../assets/MinHeapAndMaxHeap.png)
 
 ### Độ phức tạp các thao tác trên heap.
 
@@ -370,17 +370,17 @@ Dưới đây là một trong những cách cài đặt các function chính c�
 1. Phân biệt các loại cây nhị phân:
    1. Full binary tree: là cây nhị phân mà mỗi node có 0 hoặc 2 node con. Và hai loại node này (có 0 hoặc 2 node con) đều có thể ở bất kỳ level nào trong tree. 
    2. Complete binary tree: là cây nhị phân mà mỗi level sẽ được lấp đầy, và ở level cuối cùng - sẽ lấp đầy theo hướng: các node bên trái trước, bên phải sau. Mỗi node sẽ có 2 node con, trừ các node ở hai level dưới cùng. Các node ở level cuối cùng sẽ không có node con. Các node ở level thứ hai từ dưới lên - sẽ có 0, 1, hoặc 2 con.
-   3. [Link tham khảo đầy đủ](https://www.quora.com/What-is-the-difference-between-complete-and-full-binary-trees)
-2. [Heap visualization](https://www.cs.usfca.edu/~galles/visualization/Heap.html)
-3. [Binary heap](http://users.cecs.anu.edu.au/~Alistair.Rendell/Teaching/apac_comp3600/module2/binary_heaps.xhtml)
-4. Binomial heap: 
-   1. [binomial heap brilliant](https://brilliant.org/wiki/binomial-heap/)
-   2. [youtube](https://www.youtube.com/watch?v=7UQd9SYUoNk)
-   3. [Binomial heap application](https://en.wikipedia.org/wiki/Binomial_heap#Applications)
-   4. [Binomial Queue visualization](https://www.cs.usfca.edu/~galles/visualization/BinomialQueue.html)
-5. Fibonacci Heap:
-   1. [Wikipedia](https://en.wikipedia.org/wiki/Fibonacci_heap)
-   2. [fibonacci-heap, brilliant](https://brilliant.org/wiki/fibonacci-heap/#citation-3)
-   3. [fibonacci heap princetion.edu](https://www.cs.princeton.edu/~wayne/cs423/lectures/fibonacci-4up.pdf)
-   4. [why a fibonacci heap called a fibonacci heap](https://stackoverflow.com/questions/14333314/why-is-a-fibonacci-heap-called-a-fibonacci-heap)
-6. [Paring Heap](https://brilliant.org/wiki/pairing-heap/)
+  
+2. Reference
+   1. [Phân biệt các loại cây nhị phân, Quora](https://www.quora.com/What-is-the-difference-between-complete-and-full-binary-trees)
+   2. [Heap visualization](https://www.cs.usfca.edu/~galles/visualization/Heap.html)
+   3. [Binary heap](http://users.cecs.anu.edu.au/~Alistair.Rendell/Teaching/apac_comp3600/module2/binary_heaps.xhtml)
+   4. [Binomial heap, brilliant](https://brilliant.org/wiki/binomial-heap/)
+   5. [Binary & binomial heaps, Foundations of Data Science, ](https://www.youtube.com/watch?v=7UQd9SYUoNk)
+   6. [Binomial heap application](https://en.wikipedia.org/wiki/Binomial_heap#Applications)
+   7. [Binomial Queue visualization](https://www.cs.usfca.edu/~galles/visualization/BinomialQueue.html)
+   8. [Fibonacci Heap, Wikipedia](https://en.wikipedia.org/wiki/Fibonacci_heap)
+   9. [Fibonacci-heap, brilliant](https://brilliant.org/wiki/fibonacci-heap/#citation-3)
+   10. [Fibonacci heap princetion.edu](https://www.cs.princeton.edu/~wayne/cs423/lectures/fibonacci-4up.pdf)
+   11. [Why a fibonacci heap called a fibonacci heap](https://stackoverflow.com/questions/14333314/why-is-a-fibonacci-heap-called-a-fibonacci-heap)
+   12. [Paring Heap](https://brilliant.org/wiki/pairing-heap/)
