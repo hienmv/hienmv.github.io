@@ -43,25 +43,26 @@ Ngoài ra, còn có tên khác là sinking sort.
 - Lặp lại đến khi không còn 2 phần tử nào thỏa mãn. Có thể chứng minh được số lần lặp không quá N−1, do một phần tử chỉ có thể nổi lên trên không quá N−1 lần.
 
 ![](../assets/bubble-sorts.gif)
-Source code minh hoạ 
+
+Source code minh hoạ
 
 ```java
 for (int i = 0; i < n; i++) {
-	for (int j = 0; j < n - 1; j++) {
-		if (a[j] > a[j+1]) {
-			swap(a[j], a[j+1]);
-		}
-	}
+    for (int j = 0; j < n - 1; j++) {
+        if (a[j] > a[j+1]) {
+            swap(a[j], a[j+1]);
+        }
+    }
 }
 ```
 
 **Độ phức tạp thuật toán**
-- Time complexity: `0(n^2)`
-- Space complexity: `O(1)`
+- Time complexity: `0(n^2)`.
+- Space complexity: `O(1)`.
 
 **Ưu điểm**
-- Code đơn giản, dễ hiểu
-- Không tốn thêm bộ nhớ
+- Code đơn giản, dễ hiểu.
+- Không tốn thêm bộ nhớ.
 
 **Nhược điểm**
 - Độ phức tạp `O(n^2)`, không đủ nhanh với dữ liệu lớn.
@@ -74,8 +75,8 @@ Là một thuật toán sắp xếp đơn giản, và không hiệu quả như c
 
 **Ý tưởng**: (sắp xếp tăng dần)
 - Duyệt từng phần tử `i-th` trong danh sách array ban đầu, và so sánh nó với từng phần tử k trong khoảng `i-1` -> `0`.
-- Nếu  `array[k] <= array[i]`, hoán đổi vị trí của `array[k+1]` với `array[i]`
-- Nếu `array[k] > array[i]`, thì gán `array[k+1] = array[k]`
+- Nếu  `array[k] <= array[i]`, hoán đổi vị trí của `array[k+1]` với `array[i]`.
+- Nếu `array[k] > array[i]`, thì gán `array[k+1] = array[k]`.
 
 ![](../assets/insertion-sort.gif)
 
@@ -83,35 +84,35 @@ Source code minh hoạ
 
 ```java
 /*Function to sort array using insertion sort*/
-  void sort(int arr[]) 
-  { 
-      int n = arr.length; 
-      for (int i = 1; i < n; ++i) { 
-          int key = arr[i]; 
-          int j = i - 1; 
+void sort(int arr[]) 
+{ 
+    int n = arr.length; 
+    for (int i = 1; i < n; ++i) { 
+        int key = arr[i]; 
+        int j = i - 1; 
 
-          /* Move elements of arr[0..i-1], that are 
-              greater than key, to one position ahead 
-              of their current position */
-          while (j >= 0 && arr[j] > key) { 
-              arr[j + 1] = arr[j]; 
-              j = j - 1; 
-          } 
-          arr[j + 1] = key; 
-      } 
-  } 
+        /* Move elements of arr[0..i-1], that are 
+            greater than key, to one position ahead 
+            of their current position */
+        while (j >= 0 && arr[j] > key) { 
+            arr[j + 1] = arr[j]; 
+            j = j - 1; 
+        } 
+        arr[j + 1] = key; 
+    } 
+} 
 ```
 
 **Độ phức tạp thuật toán**
-- Time complexity: `O(n^2)` với `n` là độ dài của array/list đầu vào
-- Space complexity: `O(1)`
+- Time complexity: `O(n^2)` với `n` là độ dài của array/list đầu vào.
+- Space complexity: `O(1)`.
 
 **Ưu điểm**
 - Cách cài đặt đơn giản.
-- Hiệu quả với những input có dữ liệu nhỏ và hiệu quả hơn những thuật toán sắp xếp có cùng độ phức tạp `O(n^2)` như `selection sort` hay `bubble sort`
+- Hiệu quả với những input có dữ liệu nhỏ và hiệu quả hơn những thuật toán sắp xếp có cùng độ phức tạp `O(n^2)` như `selection sort` hay `bubble sort`.
 - Ổn định: ví dụ, không thay đổi thứ tự tương quan của các phần tử có cùng key.
 - Sử dụng ít bộ nhớ (space complexity `O(1)`)
-- Online: có thể sắp xếp dữ liệu từng phần dựa vào phần dữ liệu mà nó nhận được. Tham khảo [online algorithm](https://en.wikipedia.org/wiki/Online_algorithm)
+- Online: có thể sắp xếp dữ liệu từng phần dựa vào phần dữ liệu mà nó nhận được. Tham khảo [online algorithm](https://en.wikipedia.org/wiki/Online_algorithm).
 
 **Nhược điểm**
 - Độ phức tạp theo thời gian lớn `O(n^2)`, không đủ nhanh với dữ liệu lớn.
@@ -119,7 +120,7 @@ Source code minh hoạ
 **Ứng dụng**
 - Được sử dụng để sắp xếp các array/list mà có số lượng phần tử đủ nhỏ.
 - Được sử dụng để sắp xếp các phần tử mà gần như đã được sắp xếp trước đó. (khi đó, time complexity là `O(n)`).
-- Được sử dụng để sắp xếp các dãy con đủ nhỏ trong thuật toán sắp xếp `quick-sort`
+- Được sử dụng để sắp xếp các dãy con đủ nhỏ trong thuật toán sắp xếp `quick-sort`.
 - Trong C++, hàm sắp xếp mặc định `std::sort` sử dụng thuật toán sắp xếp là `introsort` (sử dụng ý tưởng chính là `quicksort`, nhưng khi size của array/list đủ nhỏ, để tăng performance, thì chuyển sang sử dụng `insertion sort`).
 
 ### 1.3 Selection sort
@@ -198,37 +199,38 @@ int a[MAXN]; // mảng trung gian cho việc sắp xếp
 
 // Sắp xếp các phần tử có chỉ số từ left đến right của mảng data.
 void mergeSort(int data[MAXN], int left, int right) {
-	if (data.length == 1) {
-		// Dãy chỉ gồm 1 phần tử, ta không cần sắp xếp.
-		return ;
-	}
-	int mid = (left + right) / 2;
-	// Sắp xếp 2 phần
-	mergeSort(data, left, mid);
-	mergeSort(data, mid+1, right);
+    if (data.length == 1) {
+        // Dãy chỉ gồm 1 phần tử, ta không cần sắp xếp.
+        return ;
+    }
+    int mid = (left + right) / 2;
+    // Sắp xếp 2 phần
+    mergeSort(data, left, mid);
+    mergeSort(data, mid+1, right);
 
-	// Trộn 2 phần đã sắp xếp lại
-	int i = left, j = mid + 1; // phần tử đang xét của mỗi nửa
-	int cur = 0; // chỉ số trên mảng a
+    // Trộn 2 phần đã sắp xếp lại
+    int i = left, j = mid + 1; // phần tử đang xét của mỗi nửa
+    int cur = 0; // chỉ số trên mảng a
 
-	while (i <= mid || j <= right) { // chừng nào còn 1 phần chưa hết phần tử.
-		if (i > mid) {
-			// bên trái không còn phần tử nào
-			a[cur++] = data[j++];
-		} else if (j > right) {
-			// bên phải không còn phần tử nào
-			a[cur++] = data[i++];
-		} else if (data[i] < data[j]) {
-			// phần tử bên trái nhỏ hơn
-			a[cur++] = data[i++];
-		} else {
-			a[cur++] = data[j++];
-		}
-	}
+    while (i <= mid || j <= right) { // chừng nào còn 1 phần chưa hết phần tử.
+        if (i > mid) {
+            // bên trái không còn phần tử nào
+            a[cur++] = data[j++];
+        } else if (j > right) {
+            // bên phải không còn phần tử nào
+            a[cur++] = data[i++];
+        } else if (data[i] < data[j]) {
+            // phần tử bên trái nhỏ hơn
+            a[cur++] = data[i++];
+        } else {
+            a[cur++] = data[j++];
+        }
+    }
 
-	// copy mảng a về mảng data
-	for (int i = 0; i < cur; i++)
-		data[left + i] = a[i];
+    // copy mảng a về mảng data
+    for (int i = 0; i < cur; i++) {
+        data[left + i] = a[i];
+    }
 }
 ```
 
@@ -263,13 +265,13 @@ Source code minh hoạ
 ```java
 Heap h = Heap();
 for (int i = 0; i < n; i++) {
-	// thêm phần tử vào heap
-	h.push(data[i]);
+    // thêm phần tử vào heap
+    h.push(data[i]);
 }
 int a[MAXN];
 for (int i = 0; i < n; i++) {
-	// lấy phần tử nhỏ nhất và cho vào mảng đã sắp xếp
-	a[i] = h.pop();
+    // lấy phần tử nhỏ nhất và cho vào mảng đã sắp xếp
+    a[i] = h.pop();
 }
 ```
 
@@ -313,22 +315,22 @@ Source code minh hoạ
 
 ```java
 void quickSort(int a[], int left, int right) {
-	int i = left, j = right;
-	int pivot = a[left + rand() % (right - left)];
-	// chia dãy thành 2 phần
-	while (i <= j) {
-		while (a[i] < pivot) ++i;
-		while (a[j] > pivot) --j;
+    int i = left, j = right;
+    int pivot = a[left + rand() % (right - left)];
+    // chia dãy thành 2 phần
+    while (i <= j) {
+        while (a[i] < pivot) ++i;
+        while (a[j] > pivot) --j;
 
-		if (i <= j) {
-			swap(a[i], a[j]);
-			++i;
-			--j;
-		}
-	}
-	// Gọi đệ quy để sắp xếp các nửa
-	if (left < j) quickSort(a, left, j);
-	if (i < right) quickSort(a, i, right);
+        if (i <= j) {
+            swap(a[i], a[j]);
+            ++i;
+            --j;
+        }
+    }
+    // Gọi đệ quy để sắp xếp các nửa
+    if (left < j) quickSort(a, left, j);
+    if (i < right) quickSort(a, i, right);
 }
 ```
 
