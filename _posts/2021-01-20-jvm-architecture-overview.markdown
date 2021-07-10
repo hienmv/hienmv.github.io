@@ -25,11 +25,11 @@ Luồng thực thi một chương trình viết bằng Java/Scala
 
 Là một open source, được dẫn dắt và tài trợ bởi Oracle.
 
-OpenJDK được coi là tham chiếu cài đặt chính thức (official reference implementation) của JVM kể từ Java Standard Edition phiên bản 7.
+OpenJDK được coi là tham chiếu cài đặt chính thức (**official reference implementation**) của JVM kể từ Java Standard Edition phiên bản 7.
 
 **Oracle** 
 
-Đây là cài đặt JVM nổi tiếng nhất, dựa trên OpenJDK, và được cung cấp thêm nhiều tính năng và tuỳ chọn hơn. Ví dụ, Oracle JVM cung cấp thêm các tính năng Flight Recorder, Java Mission Control, Application Class-Data Sharing; nó cũng có nhiều tuỳ chọn cho Garbage Collection hơn.
+Đây là cài đặt JVM nổi tiếng nhất, dựa trên OpenJDK, và được cung cấp thêm nhiều tính năng và tuỳ chọn hơn. Ví dụ, Oracle JVM cung cấp thêm các tính năng `Flight Recorder`, `Java Mission Control`, `Application Class-Data Sharing`; nó cũng có nhiều tuỳ chọn cho `Garbage Collection` hơn.
 
 Oracle JVM cần có giấy phép của công ty Oracle để sử dụng.
 
@@ -40,6 +40,7 @@ Ngoài ra, còn có một số cài đặt khác như:
 - **Android**
 - …
 
+---
 ### II. Kiến trúc của JVM (OpenJDK)
 
 ![](../assets/jvm-architecute-overview.png)
@@ -48,6 +49,7 @@ Bao gồm 3 subsystem chính:
 - **ClassLoader**
 - **Runtime Data Area**
 - **Execution Engine**
+
 
 ### 1. ClassLoader subsystem
 
@@ -71,7 +73,7 @@ Gồm 3 thành phần chính: `BootStrap ClassLoader`, `Extension ClassLoader` v
 
 Các `ClassLoader` này sẽ tuân theo `Delegation Hierarchy Algorithm` khi load các class file:
 - Khi có 1 yêu cầu load 1 class, `ClassLoader` sẽ tìm kiếm và load class đó. 
-- Nếu class đó vẫn chưa được load, `ClassLoader` sẽ gửi yêu cầu tới parent ClassLoader của nó để tìm kiếm, và quá trình này diễn ra đệ quy. 
+- Nếu class đó vẫn chưa được load, `ClassLoader` sẽ gửi yêu cầu tới parent `ClassLoader` của nó để tìm kiếm, và quá trình này diễn ra đệ quy. 
 - Nếu sau quá trình tìm kiếm này mà không tìm được class được yêu cầu load, nó sẽ trả về 1 exception: `ClassNotFoundException`
 
 
@@ -83,7 +85,7 @@ Gồm 3 quá trình: `verify`, `prepare` và `resolve`.
 
 1. **Verify** – `Bytecode verifier` sẽ kiểm thử xem bytecode của một class có đúng structure hay không. Nếu không, nó sẽ trả về **verification error**. 
 2. **Prepare** – Tạo các biến `static` cho class hoặc interface và khởi tạo chúng với giá trị mặc định.
-3. **Resolve** –  Thay thế các tham chiếu symbolic memory của các tập lệnh (`instruction`, ví dụ như `anewarray`, `checkcast`, `getfield`, `getstatic`, `instanceof`, `invokedynamic`, `invokeinterface`, `invokespecial`, `invokestatic`, `invokevirtual`, `ldc`, `ldc_w`, `multianewarray`, `new`, `putfield`, và `putstatic`.. ) với các giá trị thực tế của các tham chiếu đó ở trong `Method Area`.
+3. **Resolve** –  Thay thế các tham chiếu symbolic memory của các tập lệnh (`instruction`, ví dụ như `anewarray`, `checkcast`, `getfield`, `getstatic`, `instanceof`, `invokedynamic`, `invokeinterface`, `invokespecial`, `invokestatic`, `invokevirtual`, `ldc`, `ldc_w`, `multianewarray`, `new`, `putfield`, và `putstatic`.. ) với các giá trị thực tế của các tham chiếu đó ở trong `Method Area`.
 
 #### 1.3 Initialization
 
@@ -119,29 +121,29 @@ Trong đoạn code trên,  biến num sẽ được gán giá trị 0 (default) 
 #### 2.1 Method Area
 
 - Tất cả các `class-level` data sẽ được lưu trữ ở đây, bao gồm cả các biến static. 
-- Mỗi JVM sẽ chỉ có duy nhất một method area, và nó là shared resource. 
+- Mỗi JVM sẽ chỉ có duy nhất một `method area`, và nó là `shared resource`. 
 
 #### 2.2 Heap Area
-- Tất cả các Object và biến instances (instance variables) của chúng và arrays sẽ được lưu trữ ở đây. 
-- Mỗi JVM cũng sẽ chỉ có duy nhất một Heap Area. 
-- Vì Method Area và Heap Area là `shared memory` cho nhiều thread, nên dữ liệu được lưu trữ ở đây không phải là `thread-safe`.
+- Tất cả các Object và biến instances (`instance variables`) của chúng và arrays sẽ được lưu trữ ở đây.
+- Mỗi JVM cũng sẽ chỉ có duy nhất một `Heap Area`.
+- Vì `Method Area` và `Heap Area` là `shared memory` cho nhiều thread, nên dữ liệu được lưu trữ ở đây không phải là `thread-safe`.
 
 #### 2.3 Stack Area
-- Runtime stack sẽ được khởi tạo riêng biệt với mỗi thread. Với mỗi lời gọi hàm (`method call`), chỉ một entry sẽ được tạo ở stack memory (`stack frame`). 
+- `Runtime stack` sẽ được khởi tạo riêng biệt với mỗi thread. Với mỗi lời gọi hàm (`method call`), chỉ một entry sẽ được tạo ở stack memory (`stack frame`). 
 - Tất cả các biến cục bộ (`local variables`) sẽ được khởi tạo ở stack memory. 
-- Vì Stack Area không phải là `shared resource`, nên dữ liệu lưu trữ ở đây là `thread-safe`.
-- Stack Frame được chia thành 3 thành phần (subentities):
+- Vì `Stack Area` không phải là `shared resource`, nên dữ liệu lưu trữ ở đây là `thread-safe`.
+- `Stack Frame` được chia thành 3 thành phần (subentities):
     - **Local Variable Array**: lưu trữ giá trị của các biến cục bộ (local variables) của các method.
     - **Operand stack**: nếu một toán tử được yêu cầu để thực thi, thì operand stack sẽ hoạt động như một runtime workspace để thực thi các toán tử đó. 
-    - **Frame data**: lưu trữ tất cả data để hỗ trợ cho constant pool resolution hay khôi phục stack frame của một lời gọi hàm (method call) sau khi việc method này được thực thi và trả về kết quả như mong muốn (normal method return), hay thông tin của catch block khi xảy ra exception.  
+    - **Frame data**: lưu trữ tất cả data để hỗ trợ cho `constant pool resolution` hay khôi phục `stack frame` của một lời gọi hàm (`method call`) sau khi việc method này được thực thi và trả về kết quả như mong muốn (`normal method return`), hay thông tin của catch block khi xảy ra exception.  
 
 #### 2.4 PC Registers
-- `PC registers` lưu trữ các địa chỉ của các tập lệnh (`instruction`) đang được thực thi: một khi một tập lệnh được thực thi xong, PC register sẽ được cập nhật với tập lệnh (`instruction`) tiếp theo.
+- `PC registers` lưu trữ các địa chỉ của các tập lệnh (`instruction`) đang được thực thi: một khi một tập lệnh được thực thi xong, `PC register` sẽ được cập nhật với tập lệnh (`instruction`) tiếp theo.
 - Mỗi thread sẽ có `PC registers` riêng biệt.
 
 #### 2.5 Native Method stacks
-- Lưu trữ các thông tin của native method.
-- Một native method stack riêng biệt được khởi tạo với mỗi thread.
+- Lưu trữ các thông tin của `native method`.
+- Một `native method stack` riêng biệt được khởi tạo với mỗi thread.
 
 ### 3. Execution Engine
 
