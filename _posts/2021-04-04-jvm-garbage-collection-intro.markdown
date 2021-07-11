@@ -81,7 +81,10 @@ Việc thu gom các object nằm ở vùng nhớ `Young generation` được g�
 - Các object mới được khởi tạo sẽ nằm trong vùnh nhớ `Eden`. Khi vùng nhớ này không thể cấp phát bộ nhớ cho object mới nữa, thì `Minor GC` sẽ được gọi để thực hiện.
 - Sau 1 chu kỳ hoạt động của Minor GC, những object nào vẫn còn được tham chiếu tới thì sẽ được chuyển sang `survivor space`. 
 - `Minor GC` liên tục theo dõi các Object ở `S0`, `S1`, và sau “nhiều” chu kỳ quét mà object vẫn còn được sử dùng thì chúng mới được chuyển sang vùng nhớ `Old generation`. Việc quyết định thế nào là nhiều thì phụ thuộc vào việc cài đặt GC.
-- Khi vùng nhớ bị đầy, thay vì sử dụng cách cổ điển là `Mark-Sweep-Compact` ở trên, thì GC sẽ sử dụng cơ chế `Mark-Copy`. Điều này sẽ dẫn tới việc giảm thiểu phân mảnh vùng nhớ. 
+- Khi vùng nhớ bị đầy, thay vì sử dụng cách cổ điển là `Mark-Sweep-Compact` ở trên, thì GC sẽ sử dụng cơ chế `Mark-Copy`. 
+    > Mark-Sweep-Compact có 3 step, và sau step 3 (compact), các live object sẽ được copy để chúng nằm cạnh nhau nhằm giảm phân mảnh vùng nhớ. Tuy nhiên, nó có nhược điểm là làm tăng thêm thời gian pause time của GC cycle. 
+    Mark-copy tương tự như mark-sweep-compact, nhưng chỉ gồm 2 step, Điều này có nghĩa thời gian xử lý sẽ ngắn hơn so với Mark-Sweep-Compact. Nhược điểm là nó cần thêm một vùng nhớ nữa (more memory region).
+
 
 ![](../assets/mark-sweep-compact.png)
 
