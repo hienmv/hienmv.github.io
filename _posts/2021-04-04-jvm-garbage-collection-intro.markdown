@@ -15,9 +15,9 @@ Bài viết 4 gồm:
 
 Java virtual machine (JVM) là một máy ảo (virtual computer) được định nghĩa là một tập specification - mô tả những yêu cầu mà một cài đặt cụ thể của JVM phải tuân theo.
 
-JVM cho phép máy tính chạy được các chương trình viết bằng ngôn ngữ Java cũng như các chương trình được viết bằng ngôn ngữ khác mà cũng được biên dịch sang Java bytecode (file có định dạng .class), ví dụ như Scala.
+JVM cho phép máy tính chạy được các chương trình viết bằng ngôn ngữ Java cũng như các chương trình được viết bằng ngôn ngữ khác mà cũng được biên dịch sang `Java bytecode` (file có định dạng `.class`), ví dụ như Scala.
 
-HotSpot là một cài đặt của JVM, và được phát triển bởi Oracle. OpenJDK  là một project mà chứa open-source cài đặt của HotSpot.
+`HotSpot` là một cài đặt của JVM, và được phát triển bởi Oracle. OpenJDK là một project mà chứa open-source cài đặt của HotSpot.
 
 Bài viết này giới thiệu về Garbage collection của HotSpot.
 
@@ -38,7 +38,7 @@ Mặc dù Java platform có một garbage collector (GC) mặc định, nhưng s
 
 Trong Oracle environment, GC subsystem được coi như một pluggable subsystem, tức là một chương trình Java có thể thực thi với các GC khác nhau mà không cần được viết lại, mặc dù hiệu năng của chương trình có thể khác nhau khi thực thi với các GC khác nhau. 
 
-Mục đích chính cho việc có pluggable GC đó là GC là một kỹ thuật tính toán chung. (general computing technique), và một GC algorithm có thể không phù hợp với tất cả các trường hợp/bài toán. 
+Mục đích chính cho việc có pluggable GC đó là GC là một kỹ thuật tính toán chung. (`general computing technique`), và một GC algorithm có thể không phù hợp với tất cả các trường hợp/bài toán. 
 
 Một số yếu tố cần cân nhắc khi chọn sử dụng một GC algorithm:
 - `Pause time` (aka pause length or duration): khoảng thời gian của một GC cycle mà khi đó các Application threads bị tạm dừng.
@@ -73,9 +73,9 @@ Các object trong JVM được lưu trữ trong vùng nhớ Heap.
 
 ![](../assets/jmv-memory-heap-layout.png)
 
-### 2.1 Young generation
-- lưu trữ các object với thời gian hoạt động nhỏ (short-live object)
-- được chia thành hai vùng nhớ nhỏ hơn: `eden` và `survivor space`. Vùng nhớ `survivor space` được chia thành hai nhóm nhỏ hơn là `S0` và `S1`.
+### 3.1 Young generation
+- Lưu trữ các object với thời gian hoạt động nhỏ (`short-live object`).
+- Được chia thành hai vùng nhớ nhỏ hơn: `eden` và `survivor space`. Vùng nhớ `survivor space` được chia thành hai nhóm nhỏ hơn là `S0` và `S1`.
 
 Việc thu gom các object nằm ở vùng nhớ `Young generation` được gọi là `Minor GC`. 
 - Các object mới được khởi tạo sẽ nằm trong vùnh nhớ `Eden`. Khi vùng nhớ này không thể cấp phát bộ nhớ cho object mới nữa, thì `Minor GC` sẽ được gọi để thực hiện.
@@ -85,7 +85,7 @@ Việc thu gom các object nằm ở vùng nhớ `Young generation` được g�
 
 ![](../assets/mark-sweep-compact.png)
 
-### 2.2 Older generation
+### 3.2 Older generation
 
 Vùng nhớ này chứa các object chuyển từ `young generation` hoặc những object mà có thời gian hoạt động đủ lâu (`long-live object`. Mỗi bộ `garbage collector` sẽ định nghĩa bao nhiêu được coi là “lâu”.
 
@@ -93,7 +93,7 @@ Việc thu gom các object nằm ở vùng nhớ `Old generation` được gọi
 
 Ngoài `Minor GC` và `Major GC`, còn có một khái niệm khác là `Full GC` được định nghĩa bằng việc thu gom các object nằm cả ở vùng nhớ `Young Generation` và `Old generation`.
 
-### 2.3 Permanent generation
+### 3.3 Permanent generation
 
 Vùng nhớ này không chứa Object, nó chứa `metadata` của JVM như các thư viện Java SE, mô tả các class và các method của ứng dụng. 
 
@@ -103,19 +103,20 @@ GC gần như sẽ không tương tác tới vùng nhớ này.
 - Trong quá trình thực thi `Minor GC` và `Major GC`, `STW` (`Stop-the-world`) sẽ diễn ra. `STW` có nghĩa là tất cả các application thread sẽ bị dừng lại, cho tới khi GC thực hiện xong. Điều này ảnh hưởng tới performance của chương trình.
 - `STW` diễn ra ở thời điểm: sau khi quá trình `Minor GC`, khi các object vẫn còn được tham chiếu thì sẽ được chuyển từ `Young generation` sang `Old generation`; hoặc từ `Eden` sang `S0`; hoặc từ `S0` sang `S1`.
 
-## 3. Default Garbage collection implementation
+---
+## 4. Default Garbage collection implementation
 
-### 1. Parallel Garbage Collector
+### Parallel Garbage Collector
 - Đây chính là GC mặc định của Java 8.
 - Với `Parallel GC` quá trình xử lý các `Minor` hay `Major GC` được xử lý trên nhiều Thread (multi-thread) cho nên tốc độ xử lý của nó khá nhanh. 
 - Khi nó hoạt động thì các thread khác của chương trình sẽ bị dừng lại, điều này vẫn gây ảnh hưởng tới hệ thống.
 
-### 2. Garbage First Collector
+### Garbage First Collector
 - Là GC mặc định của Java 9, 10 và Java 11.
 - `G1` được ra đời để quản lý các vùng `HEAP > 4G` hiệu quả hơn. 
 - Khác với các GC khác `G1` chia vùng nhớ HEAP thành các phần nhỏ hơn ( có dung lượng từ 1 đến 32MB), khi GC hoạt động GC sẽ đánh dấu (marking) vùng nhớ nào có nhiều "rác" nhất, từ đó sẽ dọn dẹp (sweeping) vùng nhớ đó đầu tiên và sẽ thực hiện việc dồn bộ nhớ ngay lúc đó, có nghĩa là G1 vừa thực hiện dọn rác và dồn bộ nhớ đồng thời.
 
-
+---
 **Next sprint**
 - Concurrent GC Theory
 - Chi tiết từng implementation của GC
@@ -125,7 +126,6 @@ GC gần như sẽ không tương tác tới vùng nhớ này.
 
 **Sprint after next**
 - GC logging, monitoring, and Tuning.
-
 
 **Reference**
 - Optimize Java, Chapter 6: Basic Garbage collection
