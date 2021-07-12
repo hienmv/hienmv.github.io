@@ -79,12 +79,23 @@ Hầu hết các phases, GC sẽ chạy đồng hành cùng với các applicati
 ![](../assets/phase-2-concurrent-mark-cms.png)
 
 **Phase 3: Concurrent Preclean** bước này chạy song song với các application threads, và có nhiệm vụ giảm thời gian STW ở remark pase nhiều nhất có thể. 
-While the previous phase was running concurrently with the application, some references were changed. Whenever that happens, the JVM marks the area of the heap (called “Card”) that contains the mutated object as “dirty” (this is known as Card Marking).
+Trong khi các phase trước chạy đồng thời với application thread, một số reference đã bị thay đổi. Và bất cứ khi nào điều này xảy ra, JVM sẽ đánh dấu một vùng nhớ ở heap gọi là `Card` - chứa toàn bộ các object đã bị thay đổi ("dirty")
 
-The Concurrent Preclean phase appears to try to reduce the length of the STW Remark phase as much as possible. The Remark phase uses the card tables to fix up the marking that might have been affected by mutator threads during the Concurrent Mark phase.
+![](../assets/phase-3-concurrent-pre-clean-1-cms.png)
 
-Một số ảnh hưởng khi sử dụng CMS: (không phải ảnh hưởng nào cũng là tích cực).
-The observable effects of using CMS are as follows, for most workloads:
+Những object mà được truy cập thông qua các `dirty` object cũng bị đánh dấu. Và Cards sẽ được làm sạch (reset) khi phase này kết thúc. 
+
+![](../assets/phase-3-concurent-pre-clean-2-cms.png)
+
+**Phase 4: Remark** STW. Mục tiêu của bước này là đánh dấu toàn bộ các live objects ở vùng nhớ `Old generation`. 
+
+**Phase 5: Concurrent Sweep** chạy đồng thời với application threads để loại bỏ các object không còn được tham chiếu tới nữa, và lấy lại vùng nhớ (reclaim). 
+
+![](../assets/phase-5-concurrent-sweep-cms.png)
+
+**Phase 6: Concurrent Reset**. được thực hiện đồng thời để reset các cấu trúc dữ liệu bên trong CMS algorithm và chuẩn bị cho cycle tiếp theo.
+
+**Một số ảnh hưởng khi sử dụng CMS** (không phải ảnh hưởng nào cũng là tích cực)
 - Application threads don’t stop for as long
 - A single full GC cycle takes longer (in wallclock time) 
 - Application throughput is reduced while a CMS GC cycle is running
@@ -92,7 +103,19 @@ The observable effects of using CMS are as follows, for most workloads:
 - Considerably more CPU time is needed overall to perform GC.
 - CMS does not compact the heap, so Tenured can become fragmented.
 
-CMS collector hiện từ bản Java 9 trở đi được đánh giá là `deprecated`, và tới Java 14 thì ngừng hỗ trợ hoàn toàn.
+
+
+**NOTE**
+- Mặc định CMS sẽ sử dụng 1/2 available thread để thực hiện các concurent phases của GC, và 1/2 số lượng threads đê thực thi các Java code.
+- Điều gì sẽ xảy ra khi vùng nhớ Eden bị đầy trong kh CMS đang chạy?
+    - vì những application thread không thể tiếp tục, nên chúng bị tạm ngừng và STW young GC sẽ chạy trong kh CMS đang chay. young GC này sẽ chạy tốn nhiều thời gian hơn young GC trong trường hợp sử dụng parallel collectors vì chỉ có 1/2 core available cho youn generation GC (số core con lai đang chạy CMS). Khi kết thúc young generation, một số object mà đủ điều kiện sẽ được chuyển qua vùng nhớ Tenured (aka old generation). Việc chuyển các object này diễn ra khi CMS vẫn đan chạy, nên nó yêu cầu 2 collectors này phối hợp vơi nhau, đó là lý do mà CMS cần một biên thể của young parallel collector (`ParNew`).
+    - trong trường hợp có quá nhiều object từ young generation được chuyển lên old generation mà old generation không đủ vùng nhớ, JVM không có lựa chọn khác là phải sử dụng ParallelOld - full STW. (vấn đề này được biết đến với tên gọi `concurrent mode failure` (CMF)).
+    
+    ![](../assets/cmf-1-cms.png)
+    
+    - Để hạn chế CMF diễn ra thường xuyên, CMS cần chạy một colleciton cycle trước Tenured đầy, và được set mặc định là 75% vùng nhớ của Tenured. 
+
+- CMS collector hiện từ bản Java 9 trở đi được đánh giá là `deprecated`, và tới Java 14 thì ngừng hỗ trợ hoàn toàn.
 
 ---
 **Reference**
