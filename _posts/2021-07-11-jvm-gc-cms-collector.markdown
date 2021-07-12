@@ -33,7 +33,21 @@ Một số case đặc biệt khác:
     - là một phần của việc thực thực bycode (interpreted mode).
     - bị gián đoạn bởi OS.
 
-### Tri-Color Marking (todo)
+### Tri-Color Marking
+- Maintain 3 objects sets.
+    - White sets: unknown status/ not yet visited.
+    - Gray sets: Live, children not known/ visited.
+    - Black sets: Live, children live too / visited + child visited.
+- Initially all objects are white
+- Grey all GC roots
+- While gray set is not empty
+    - If it has white child → color child grey
+    - Otherwise color node black
+    - Go to the step 3
+
+Black nodes points only black or gray nodes.
+
+If gray set is empty — all nodes in white set can be garbaged.
 
 
 ---
