@@ -5,10 +5,10 @@ date: 2021-07-03 22:47:52 +0900
 categories: work-style
 
 ---
-Bài viết gồm 3 phần:
-- Tại sao nên yêu thích công việc mình đang làm?
-- Tôi đang dần trở nên yêu thích công việc của mình hơn.
-- Một gợi ý để yêu công việc mình đang làm hơn.
+>Bài viết gồm 3 phần:
+>- Tại sao nên yêu thích công việc mình đang làm?
+>- Tôi đang dần trở nên yêu thích công việc của mình đang làm hơn.
+>- Một gợi ý để yêu công việc mình đang làm hơn.
 
 ---
 ## 1. Tại sao nên yêu thích công việc mình đang làm?
@@ -24,7 +24,7 @@ Bài viết gồm 3 phần:
 **3. Sức khoẻ thể chất/tinh thần tốt hơn**
 
 ---
-## 2.Tôi đang dần trở nên yêu thích công việc của mình hơn
+## 2.Tôi đang dần trở nên yêu thích công việc của mình đang làm hơn
 
 Tôi đang:
 - **(1)** Luôn mong muốn nâng cao hiệu quả công việc / đơn vị thời gian.
@@ -36,7 +36,7 @@ Cùng một kết quả nhưng có sự thay đổi trong mục đích hành đ�
 - **Trước** 
     - Có lý do cá nhân để phải giỏi nhanh hơn, dẫn tới ép bản thân nhiều hơn, nhưng có nhiều tác dụng phụ: stress, tiếp thu kiến thức chậm.
 - **Sau**
-    - Thay đổi cách tiếp cận: chấp nhận bản thân và tìm mọi lý do để yêu thích công việc đang làm
+    - Thay đổi cách tiếp cận: chấp nhận bản thân và tìm mọi lý do để yêu thích công việc đang làm.
     - Nhận ra những tác động tích cực: giảm stress và tiếp thu kiến thức nhanh hơn, từ đó dẫn tới kết quả **(3)**, **(4)** ở trên.
 
 **Một điều "ngộ" ra khác: Việc yêu thích công việc mình đang làm có thể luyện tập được.**
@@ -53,17 +53,19 @@ Cùng một kết quả nhưng có sự thay đổi trong mục đích hành đ�
 - Có trách nhiệm với kết quả công việc của mình hơn, để nâng cao hiệu quả, từ đó có thêm thời gian cho những hoạt động cá nhân khác.
 
 **2/ Tôn trọng, học hỏi từ đồng nghiệp nhiều hơn.**
+
 Cụ thể khi meeting/thảo luận: 
 
 - **Trước**
   - Chuẩn bị thật tốt các kiến thức liên quan.
-  - Phân tích các đối tượng tham gia meeting để tìm cách giao tiếp phù hợp.
+  - Tìm cách giao tiếp phù hợp với từng đối tượng tham gia meeting/thảo luận.
 - **Trong**
   - Tranh luận dựa trên vấn đề - **KHÔNG** phải con người/thái độ.
 - **Sau**
   - Thực hiện đúng theo cam kết đã thống nhất trong buổi meeting.
 
 **3/ Suy nghĩ mở với những thay đổi & Chủ động nâng cao kiến thức chuyên môn**
+
 - Bạn không phải không thể bị thay thế.
 - Ngôn ngữ không phải là tôn giáo.
 
