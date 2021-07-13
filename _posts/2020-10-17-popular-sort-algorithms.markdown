@@ -5,12 +5,13 @@ date: 2020-10-17 22:47:52 +0900
 categories: tech
 
 ---
+>Bài viết gồm 4 phần
+>- Sort Algorithms Overview.
+>- Simple sorts: `Bubble sort`, `Insertion sort`, and `Selection sort`.
+>- Efficient sorts: `Mergesort`, `Heapsort`, `Quicksort`.
+>- Distribution sort: `Counting sort`, `Bucket sort`, and `Radix sort`.
 
-**Bài viết gồm 4 phần**
-- Sort Algorithms Overview.
-- Simple sorts: `Bubble sort`, `Insertion sort`, and `Selection sort`.
-- Efficient sorts: `Mergesort`, `Heapsort`, `Quicksort`.
-- Distribution sort: `Counting sort`, `Bucket sort`, and `Radix sort`.
+---
 
 ![](../assets/sorting-complexity.png)
 

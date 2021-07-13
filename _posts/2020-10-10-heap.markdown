@@ -6,15 +6,13 @@ categories: tech
 
 ---
 
-Bài viết gồm 5 phần:
-```
-1. Tổng quan về Heap
-2. Binary Heap
-3. Binomial Heap (“heap nhị thức”). 
-4. Fibonacci heap
-5. Paring Heap (TODO)
-6. Phụ lục
-```
+>Bài viết gồm 4 phần:
+>- Tổng quan về Heap
+>- Binary Heap
+>- Binomial Heap (“heap nhị thức”). 
+>- Fibonacci heap
+
+---
 
 ## 1/ Tổng quan về Heap
 
@@ -363,9 +361,8 @@ Dưới đây là một trong những cách cài đặt các function chính c�
 
 - Cũng giống như binary heap, binomial heap, Fibonacci heap được sử dụng để cài đặt priority queue ở thuật toán tìm đường như Dijkstra, Prim nhằm tăng performance. 
 
-## 5/ Paring heap (TODO)
 
-## 6/ Phụ lục
+**Phụ lục**
 
 1. Phân biệt các loại cây nhị phân:
    1. Full binary tree: là cây nhị phân mà mỗi node có 0 hoặc 2 node con. Và hai loại node này (có 0 hoặc 2 node con) đều có thể ở bất kỳ level nào trong tree. 

@@ -5,12 +5,13 @@ date: 2021-04-04 22:47:52 +0900
 categories: tech
 
 ---
-Bài viết 4 gồm:
-- Định nghĩa Garbage collection
-- Tradeoffs and Pluggable Collectors
-- Garbage Collection và JVM Memory Model.
-- Default Garbage collection implementation
+>Bài viết 4 gồm:
+>- Định nghĩa Garbage collection
+>- Tradeoffs and Pluggable Collectors
+>- Garbage Collection và JVM Memory Model.
+>- Default Garbage collection implementation
 
+---
 #### Giới thiệu và nhắc lại một số khái niệm liên quan
 
 Java virtual machine (JVM) là một máy ảo (virtual computer) được định nghĩa là một tập specification - mô tả những yêu cầu mà một cài đặt cụ thể của JVM phải tuân theo.

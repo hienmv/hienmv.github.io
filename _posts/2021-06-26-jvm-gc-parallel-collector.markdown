@@ -5,11 +5,11 @@ date: 2021-06-26 22:47:52 +0900
 categories: tech
 
 ---
-Bài viết gồm 2 phần:
-- Nhắc lại một số khái niệm liên quan.
-- The Parallel Collectors.
+>Bài viết gồm 2 phần:
+>- Nhắc lại một số khái niệm liên quan.
+>- The Parallel Collectors.
 
-
+---
 ## 1. Nhắc lại một số khái niệm liên quan
 
 GC process được trigger khi có yêu cầu cấp pháp bộ nhớ nhưng không có đủ `available memory` để cấp phát. Tức là, GC cycles không được xếp lịch để thực thi cố định theo khoảng thời gian, mà chỉ được thực thi khi cần thiết (`as-needed basis`).

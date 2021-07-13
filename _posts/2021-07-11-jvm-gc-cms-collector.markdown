@@ -5,10 +5,11 @@ date: 2021-07-11 22:47:52 +0900
 categories: tech
 
 ---
-Bài viết gồm 2 phần:
-- Concurrent GC Theory.
-- CMS.
+>Bài viết gồm 2 phần:
+>- Concurrent GC Theory.
+>- CMS.
 
+---
 ## 1. Concurrent GC Theory
 
 ### JVM Safepoints

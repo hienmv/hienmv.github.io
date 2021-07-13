@@ -5,9 +5,9 @@ date: 2021-01-20 22:47:52 +0900
 categories: tech
 
 ---
-**Bài viết gồm 2 phần**
-- Định nghĩa về JVM
-- Kiến trúc của JVM (OpenJDK)
+>Bài viết gồm 2 phần
+>- Định nghĩa về JVM
+>- Kiến trúc của JVM (OpenJDK)
 
 ---
 ## I. Định nghĩa
