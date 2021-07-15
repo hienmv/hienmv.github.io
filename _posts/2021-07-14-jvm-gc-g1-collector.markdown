@@ -96,7 +96,7 @@ Live objects sẽ được copy/move tới 1 hoặc nhiều survivor regions kh�
 
 ![](../assets/g1-young-gc-1.png)
 
-STW diễn ra. Eden size and survivor size sẽ được tính toán cho lần young GC tiếp theo. Thông tin thống kê sẽ được lưu lại để giúp cho việc tính toán size của các region.
+STW diễn ra. Eden size and survivor size sẽ được tính toán cho lần young GC tiếp theo. Thông tin thống kê (`Accounting information`) sẽ được lưu lại để giúp cho việc tính toán size của các region.
 
 ### End of a young GC with G1
 
@@ -124,11 +124,11 @@ Gồm 5 phase:
 1. **Initial Mark** (STW)
 Đánh dấu các survivor regions (root regions) mà có thể có reference tới các objects ở old generation. 
 2. **Root Region Scanning**
-Scan các survivor regions mà có reference tới old generation. Phase này xảy ra đồng thời khi application threads đang chạy, và phải hoàn thành trước khi một young GC có thể xảy ra. 
-3. **Concurrent Marking**
-Tìm các live object trên toàn bộ heap. Phase này xảy ra đồng thời khi application threads đang chạy, và nó có thể bị gián đoạn bở young GC. 
+Scan các survivor regions mà có reference tới old generation. Phase này xảy ra đồng thời khi application threads đang chạy, và phải hoàn thành trước khi young GC tiếp theo có thể xảy ra. 
+1. **Concurrent Marking**
+Hoàn thành việc đánh dấu các live object trên toàn bộ heap. Phase này xảy ra đồng thời khi application threads đang chạy, và nó có thể bị gián đoạn bởi young GC. 
 4. **Remark** (STW)
-Đánh dấu toàn bộ live object trên heap. 
+Hoàn thành việc đánh dấu toàn bộ live object trên heap. 
 Sử dụng thuật toán SATB (snapshot-at-the-beginning) nhanh hơn nhiều so với thuật toán được dùng ở CMS collector. 
 5. **Cleanup** (STW and Concurrent)	
 - Thực hiện ở các live objects và các regions hoàn toàn free. (STW)
@@ -157,13 +157,15 @@ Những empty regions sẽ được xoá và lấy lại bộ nhớ. Thông tin 
 
 ### Copying/Cleanup Phase
 
-G1 sẽ lựa chọn các regions mà có "liveness" thấp nhất, mà các regions có thể được collect nhanh nhất. Những regions này sẽ được collect đồng thời ở thời điểm của young GC. Tức là, cả young và old generation sẽ được collect đồng thời.
+G1 sẽ lựa chọn các regions có `low liveness` vì các regions có thể được collect nhanh nhất. Những regions này sẽ được collect đồng thời ở thời điểm của young GC. Tức là, cả young và old generation sẽ được collect đồng thời.
 
 ![](../assets/g1-old-gc-4.png)
 
 ### After Copying/Cleanup Phase
 
 Những regions được lựa chọn ở trên để collect và compact vào dark blue region phía dưới.
+
+Một số garbage object có thể còn tồn tại ở old generation regions.
 
 ![](../assets/g1-old-gc-5.png)
 
