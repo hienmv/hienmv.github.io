@@ -69,10 +69,12 @@ Với nội dung `2.` ở trên:
   > card table là 1 array of byte được quản lý bởi JVM, mỗi phần tử trong array tương đương với 1 vùng nhớ 512-byte trong old-generation space. Mỗi khi 1 field (of reference type) của 1 old object bị thay đổi, thì entry trong card table mà chứa `instanceOop` tương ứng sẽ bị đánh dấu là `dirty`, với `instanceOop` là represent instances của 1 Java class tại thời điểm runtime.
 
 - G1 collector cũng có 1 feature tương tự để tracking liên kết (reference) giữa các region.
-  - `Remembered Sets` (`RSets`) được sử dụng để tracking object reference tới 1 region. Mỗi region sẽ có 1 `RSets`. Điều này có nghĩa, với 1 region A, thay vì tracking reference tới A bằng cách duyệt qua toàn bộ heap, G1 chỉ cần kiểm tra trên `RSets`, và sau đó scan những regions nào đang reference tới A. Điều này sẽ giúp cho việc chạy song song và độc lập GC ở mỗi region.
+   - `Remembered Sets` (`RSets`) được sử dụng để tracking object reference tới 1 region. Mỗi region sẽ có 1 `RSets`. Điều này có nghĩa, với 1 region A, thay vì tracking reference tới A bằng cách duyệt qua toàn bộ heap, G1 chỉ cần kiểm tra trên `RSets`, và sau đó scan những regions nào đang reference tới A. Điều này sẽ giúp cho việc chạy song song và độc lập GC ở mỗi region.
+
     ![](../assets/g1-rset.png)
 
    - Ngoài ra, ở G1 còn có `Collection Sets` (`CSets`) - danh sách các region sẽ được collect ở 1 GC. Toàn bộ live object ở 1 `CSet` sẽ được copy/move trong quá trình GC.Những danh sách các region này có thể là Eden, survivor, hoặc old generation.
+
     ![](../assets/g1-cset.png)
 
 ---
