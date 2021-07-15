@@ -11,7 +11,7 @@ categories: work-style
 >- Một gợi ý để yêu công việc mình đang làm hơn.
 
 
-![](..//assets/love-what-you-do.jpg)
+![](../assets/love-what-you-do.jpg)
 
 ---
 ## 1. Tại sao nên yêu thích công việc mình đang làm?
