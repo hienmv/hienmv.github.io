@@ -70,7 +70,6 @@ Với nội dung `2.` ở trên:
 
 - G1 collector cũng có 1 feature tương tự để tracking liên kết (reference) giữa các region.
   - `Remembered Sets` (`RSets`) được sử dụng để tracking object reference tới 1 region. Mỗi region sẽ có 1 `RSets`. Điều này có nghĩa, với 1 region A, thay vì tracking reference tới A bằng cách duyệt qua toàn bộ heap, G1 chỉ cần kiểm tra trên `RSets`, và sau đó scan những regions nào đang reference tới A. Điều này sẽ giúp cho việc chạy song song và độc lập GC ở mỗi region.
-
     ![](../assets/g1-rset.png)
 
    - Ngoài ra, ở G1 còn có `Collection Sets` (`CSets`) - danh sách các region sẽ được collect ở 1 GC. Toàn bộ live object ở 1 `CSet` sẽ được copy/move trong quá trình GC.Những danh sách các region này có thể là Eden, survivor, hoặc old generation.
