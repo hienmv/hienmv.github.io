@@ -10,8 +10,13 @@ categories: work-style
 >- Tôi đang dần trở nên yêu thích công việc của mình đang làm hơn.
 >- Một gợi ý để yêu công việc mình đang làm hơn.
 
+
+![](..//assets/love-what-you-do.jpg)
+
 ---
 ## 1. Tại sao nên yêu thích công việc mình đang làm?
+
+Dưới đây là những hiệu quả khi bạn yêu thích công việc mình đang làm. 
 
 **1. Giảm bớt áp lực công việc**
 - Coi việc đang làm là thứ để khám phá điều mới, thay vì chỉ là công cụ chỉ để kiếm tiền.
@@ -30,16 +35,17 @@ Tôi đang:
 - **(1)** Luôn mong muốn nâng cao hiệu quả công việc / đơn vị thời gian.
 - **(2)** Tự học thêm để nâng cao kiến thức chuyên môn ngoài giờ làm việc.
 - **(3)** Chủ động nhận nhiều trách nhiệm hơn để thử thách bản thân.
-- **(4)** Học thêm nhiều điều mới từ những người xung quanh.
+- **(4)** Nhận ra mình đang học được thêm nhiều điều mới từ những người xung quanh.
 
-Cùng một kết quả nhưng có sự thay đổi trong mục đích hành động:
+Với cùng một mục tiêu, cùng cách thức thực hiện, nhưng có sự thay đổi lớn trong suy nghĩ, dẫn tới hệ quả vượt mong đợi.
 - **Trước** 
     - Có lý do cá nhân để phải giỏi nhanh hơn, dẫn tới ép bản thân nhiều hơn, nhưng có nhiều tác dụng phụ: stress, tiếp thu kiến thức chậm.
 - **Sau**
     - Thay đổi cách tiếp cận: chấp nhận bản thân và tìm mọi lý do để yêu thích công việc đang làm.
     - Nhận ra những tác động tích cực: giảm stress và tiếp thu kiến thức nhanh hơn, từ đó dẫn tới kết quả **(3)**, **(4)** ở trên.
 
-**Một điều "ngộ" ra khác: Việc yêu thích công việc mình đang làm có thể luyện tập được.**
+
+>Một điều "ngộ" ra là: Việc yêu thích công việc mình đang làm CÓ THỂ luyện tập được.
 
 ---
 ## 3. Một gợi ý để yêu công việc mình đang làm hơn.
@@ -54,7 +60,7 @@ Cùng một kết quả nhưng có sự thay đổi trong mục đích hành đ�
 
 **2/ Tôn trọng, học hỏi từ đồng nghiệp nhiều hơn.**
 
-Cụ thể khi meeting/thảo luận: 
+Cụ thể là khi meeting/thảo luận:
 
 - **Trước**
   - Chuẩn bị thật tốt các kiến thức liên quan.
@@ -67,5 +73,5 @@ Cụ thể khi meeting/thảo luận:
 **3/ Suy nghĩ mở với những thay đổi & Chủ động nâng cao kiến thức chuyên môn**
 
 - Bạn không phải không thể bị thay thế.
-- Ngôn ngữ không phải là tôn giáo.
+- Ngôn ngữ lập trình không phải là tôn giáo.
 
