@@ -56,7 +56,7 @@ Với cùng một mục tiêu, cùng cách thức thực hiện, nhưng có sự
 
 - Chủ động đặt ra mục tiêu trong công việc, và nâng cao mục tiêu thường xuyên.
 - Chia sẻ thông tin (minh bạch) với đồng nghiệp hơn.
-- Có trách nhiệm với kết quả công việc của mình hơn, để nâng cao hiệu quả, từ đó có thêm thời gian cho những hoạt động cá nhân khác.
+- Có trách nhiệm với kết quả công việc của mình hơn để nâng cao giá trị lao động của bản thân, và cũng là để có thêm thời gian cho những hoạt động cá nhân khác nữa.
 
 **2/ Tôn trọng, học hỏi từ đồng nghiệp nhiều hơn.**
 
